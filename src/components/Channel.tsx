@@ -18,7 +18,7 @@ const messagesQuery = messagesRef.orderBy("createdAt", "asc").limit(100);
 const Channel = () => {
     const [text, setText] = useState ("");
     const { logout, user } = useUser();
-    const [messages, loading, error] = useCollectionData<IMessage>(
+    const [messages, loading] = useCollectionData<IMessage>(
         messagesQuery, 
         { idField: "id" }
     );
