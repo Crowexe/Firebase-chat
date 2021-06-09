@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 #spinner {
-	display: grid;
-	justify-content: center;
 	border: 0.4rem solid rgb(231, 231, 231);
 	width: 3rem;
 	height: 3rem;
