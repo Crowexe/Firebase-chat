@@ -1,3 +1,4 @@
+import Loading from "./Loading";
 import { SyntheticEvent, useState } from "react";
 import { useUser } from "../context/user";
 import { firebase, firestore } from "../services/firebase";
@@ -12,10 +13,10 @@ interface IMessage {
     createAt: firebase.firestore.Timestamp
 }
 
-const messagesRef = firestore.collection("messages");
+const messagesRef = firestore.collection("react");
 const messagesQuery = messagesRef.orderBy("createdAt", "asc").limit(100);
 
-const Channel = () => {
+const ReactDoubt = () => {
     const [text, setText] = useState ("");
     const { logout, user } = useUser();
     const [messages, loading] = useCollectionData<IMessage>(
@@ -44,13 +45,12 @@ const Channel = () => {
     if(loading){
 
         return (
-            <h1>loading... </h1>
+            <Loading />
         )
     }
 
     return (
         <section>
-            <button onClick={logout}>Logout</button>
             <section>
                 { messages && messages.map(({ text, displayName, photoURL, id }) => (
                     <div>
@@ -62,8 +62,9 @@ const Channel = () => {
                 <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
                 <button>send</button>
             </form>
+			<button onClick={logout}>Logout</button>
         </section>
     )
 }
 
-export default Channel;
+export default ReactDoubt;
